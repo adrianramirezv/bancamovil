@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Página Sencilla</title>
+    <style>
+        /* Estilos CSS */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Asegura que ocupe al menos toda la altura de la ventana */
+        }
+
+        .contenedor {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+        }
+
+        h1 {
+            color: #0056b3;
+            margin-bottom: 20px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .boton {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .boton:hover {
+            background-color: #0056b3;
+        }
+
+        /* Estilos para la barra de navegación */
+        header {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #0056b3;
+            padding: 10px 30px;
+        }
+
+        /* Menú hamburguesa */
+        #menu-toggle {
+            display: none;
+        }
+
+        #menu-toggle:checked + label + ul {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        label {
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 32px;
+            width: 32px;
+            margin-right: 10px;
+        }
+
+        label span {
+            background: #fff;
+            height: 4px;
+            width: 28px;
+            border-radius: 2px;
+            margin: 3px 0;
+            display: block;
+        }
+
+        ul {
+            position: absolute;
+            top: 50px;
+            left: 10px;
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            width: 160px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            z-index: 1001;
+        }
+
+        ul li {
+            border-bottom: 1px solid #eee;
+        }
+
+        ul li a {
+            display: block;
+            padding: 15px;
+            color: #0056b3;
+            text-decoration: none;
+        }
+
+        button {
+            background: #fff;
+            color: #0056b3;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        /* Espacio superior para el contenido principal */
+        .contenedor {
+            margin-top: 80px;
+        }
+
+        /* Estilos para el efecto parallax */
+        .parallax-container {
+            position: relative;
+            overflow: hidden;
+            height: 350px;
+        }
+
+        .parallax-img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            will-change: transform;
+        }
+
+        .parallax-text {
+            position: relative;
+            z-index: 2;
+            color: #fff;
+            text-shadow: 0 2px 8px #000;
+            font-size: 2rem;
+            padding-top: 120px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra superior -->
+    <header>
+        <nav>
+            <!-- Menú hamburguesa -->
+            <div style="display:flex;align-items:center;">
+                <input type="checkbox" id="menu-toggle">
+                <label for="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </label>
+                <ul id="menu-opciones">
+                    <li><a href="#">HOME</a></li>
+                    <li><a href="#">ESTADISTICAS</a></li>
+                </ul>
+            </div>
+            <!-- Botón cerrar sesión -->
+            <button>Cerrar sesión</button>
+        </nav>
+    </header>
+    <script>
+        // Mostrar/ocultar menú hamburguesa
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuOpciones = document.getElementById('menu-opciones');
+        menuToggle.addEventListener('change', function() {
+            if (this.checked) {
+                menuOpciones.style.opacity = '1';
+                menuOpciones.style.pointerEvents = 'auto';
+            } else {
+                menuOpciones.style.opacity = '0';
+                menuOpciones.style.pointerEvents = 'none';
+            }
+        });
+        // Cierra el menú al hacer clic fuera
+        document.addEventListener('click', function(e) {
+            if (!menuOpciones.contains(e.target) && !e.target.htmlFor) {
+                menuToggle.checked = false;
+                menuOpciones.style.opacity = '0';
+                menuOpciones.style.pointerEvents = 'none';
+            }
+        });
+    </script>
+    <div class="contenedor">
+        <h1>PRIMER PRUEBA COPILOT</h1>
+        <div class="parallax-container">
+            <img 
+                src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" 
+                alt="Espiral psicodélica" 
+                class="parallax-img"
+            >
+            <div class="parallax-text">
+                Efecto Parallax Espiral Psicodélica
+            </div>
+        </div>
+        <p>Desplázate para ver el efecto parallax en la imagen de la espiral.</p>
+    </div>
+    <script>
+        // Efecto parallax para la imagen
+        window.addEventListener('scroll', function() {
+            const parallax = document.querySelector('.parallax-img');
+            if (parallax) {
+                let scrolled = window.scrollY;
+                parallax.style.transform = 'translateY(' + (scrolled * 0.3) + 'px)';
+            }
+        });
+    </script>
+</body>
+</html>
